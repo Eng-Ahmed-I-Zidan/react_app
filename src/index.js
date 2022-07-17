@@ -1,8 +1,16 @@
-import React from 'react';
-import ReactDOM from 'react-dom/client';
+/* eslint-disable no-unused-vars */
+// react and react-dom
+import React from 'react'
+import ReactDOM from 'react-dom/client'
+
+// pages of contents
+import App from './pages/App'
+
+// style
 import './index.css';
-import App from './App';
-import reportWebVitals from './reportWebVitals';
+
+// report web vitals
+import reportWebVitals from './reportWebVitals'
 
 const root = ReactDOM.createRoot(document.getElementById('root'));
 root.render(
