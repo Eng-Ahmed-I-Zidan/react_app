@@ -1,8 +1,9 @@
+import { memo } from 'react'
 
-function Footer() {
+function Footer(props) {
     return (
-        "this is footer page"
+        <h1>{props.content}</h1>   
     )
 }
 
-export default Footer
+export default memo(Footer)

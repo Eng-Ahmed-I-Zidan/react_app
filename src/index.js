@@ -7,7 +7,6 @@ import ReactDOM from 'react-dom/client'
 import App from './pages/App'
 
 // style
-import './index.css';
 
 // report web vitals
 import reportWebVitals from './reportWebVitals'

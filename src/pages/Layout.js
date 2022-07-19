@@ -12,7 +12,7 @@ function Layout() {
       <Outlet />
 
       {/* footer */}
-      <Footer />
+      <Footer content="Footer Page" />
     </>
   );
 }

@@ -1,6 +1,6 @@
 function Blogs() {
     return (
-        "blogs"
+        <p>blogs</p>
     )
 }
 
