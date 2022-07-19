@@ -1,31 +1,57 @@
+/* eslint-disable react-hooks/exhaustive-deps */
 /* eslint-disable no-unused-vars */
-import { useState } from 'react'
+import { useState, useEffect, createContext, useContext } from 'react'
 import styles from '../Home.module.scss'
 
-function Home() {
-  const [car, setCar] = useState({
-    brand: "Ford",
-    model: "Mustang",
-    year: "1964",
-    color: "red"
-  });
+const UserContext = createContext();
 
-  const updateState = () => {
-    setCar(
-        previousValues => {
-            return {...previousValues, model: "new model"}
-        }
-    )
-  }
+function Home() {
+  const [user, setUser] = useState("Jesse Hall");
+
+  return (
+    <UserContext.Provider value={user}>
+      <h1>{`Hello ${user}!`}</h1>
+      <Component2 user={user} />
+    </UserContext.Provider>
+  );
+}
+
+function Component2() {
+  return (
+    <>
+      <h1>Component 2</h1>
+      <Component3 />
+    </>
+  );
+}
+
+function Component3() {
+  return (
+    <>
+      <h1>Component 3</h1>
+      <Component4 />
+    </>
+  );
+}
+
+function Component4() {
+  return (
+    <>
+      <h1>Component 4</h1>
+      <Component5 />
+    </>
+  );
+}
+
+function Component5() {
+  const user = useContext(UserContext);
 
   return (
     <>
-      <h1 onClick={updateState}>My {car.brand}</h1>
-      <p>
-        It is a {car.color} {car.model} from {car.year}.
-      </p>
+      <h1>Component 5</h1>
+      <h2>{user}</h2>
     </>
-  )
+  );
 }
 
 export default Home
