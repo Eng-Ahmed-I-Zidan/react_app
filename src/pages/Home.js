@@ -1,55 +1,35 @@
 /* eslint-disable react-hooks/exhaustive-deps */
 /* eslint-disable no-unused-vars */
-import { useState, useEffect, createContext, useContext } from 'react'
+import { useRef, useState, useEffect } from 'react'
 import styles from '../Home.module.scss'
 
-const UserContext = createContext();
-
 function Home() {
-  const [user, setUser] = useState("Jesse Hall");
+  const [val, setVal] = useState("")
+  const count = useRef(0)
+  const foc = useRef()
+  const previousVal = useRef("")
 
-  return (
-    <UserContext.Provider value={user}>
-      <h1>{`Hello ${user}!`}</h1>
-      <Component2 user={user} />
-    </UserContext.Provider>
-  );
-}
+  const focusElement = () => {
+    foc.current.focus()
+  }
 
-function Component2() {
-  return (
-    <>
-      <h1>Component 2</h1>
-      <Component3 />
-    </>
-  );
-}
-
-function Component3() {
-  return (
-    <>
-      <h1>Component 3</h1>
-      <Component4 />
-    </>
-  );
-}
-
-function Component4() {
-  return (
-    <>
-      <h1>Component 4</h1>
-      <Component5 />
-    </>
-  );
-}
-
-function Component5() {
-  const user = useContext(UserContext);
+  useEffect(() => {
+    count.current = count.current + 1
+    previousVal.current = val
+  }, [val])
 
   return (
     <>
-      <h1>Component 5</h1>
-      <h2>{user}</h2>
+      <input 
+        type="text" 
+        value={val} 
+        onChange={event => setVal(event.target.value)}
+        ref={foc}
+      />
+      <h2>count: {count.current}</h2>
+      <h2>current value: {val}</h2>
+      <h2>previous value: {previousVal.current}</h2>
+      <button onClick={focusElement}>focus</button>
     </>
   );
 }
